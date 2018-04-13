@@ -14,6 +14,9 @@ import { FirestoreProvider } from '../providers/firestore/firestore';
 
 import { Pro } from '@ionic/pro';
 import { Injectable, Injector } from '@angular/core';
+import { AuthProvider } from '../providers/auth/auth';
+
+import { AngularFireAuthModule } from 'angularfire2/auth';
 
 Pro.init('24567ae1', {
     appVersion: '0.0.1'
@@ -49,6 +52,7 @@ export class MyErrorHandler implements ErrorHandler {
     IonicModule.forRoot(MyApp),
     AngularFireModule.initializeApp(firebaseConfig),
     AngularFirestoreModule,
+    AngularFireAuthModule,
   ],
   bootstrap: [IonicApp],
   entryComponents: [
@@ -61,7 +65,8 @@ export class MyErrorHandler implements ErrorHandler {
     {provide: ErrorHandler, useClass: IonicErrorHandler},
     FirestoreProvider,
     IonicErrorHandler,
-    [{ provide: ErrorHandler, useClass: MyErrorHandler }]
+    [{ provide: ErrorHandler, useClass: MyErrorHandler }],
+    AuthProvider
   ]
 })
 export class AppModule {}
