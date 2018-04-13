@@ -1,5 +1,7 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { Song } from '../../models/song.interface';
+
 
 /**
  * Generated class for the DetailPage page.
@@ -15,7 +17,10 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
 })
 export class DetailPage {
 
+  public song: Song;
+
   constructor(public navCtrl: NavController, public navParams: NavParams) {
+    this.song = this.navParams.get('song');
   }
 
   ionViewDidLoad() {
