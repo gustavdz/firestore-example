@@ -12,7 +12,8 @@
 </ion-header>
 
 <ion-content>
-  <ion-card *ngFor="let song of songList | async">
+  <ion-card *ngFor="let song of songList | async"
+            (click)="goToDetailPage(song)">
     <ion-card-header>
       {{ song.songName }}
     </ion-card-header>

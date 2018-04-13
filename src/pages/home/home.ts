@@ -21,6 +21,9 @@ export class HomePage {
   ionViewDidLoad() {
       this.songList = this.firestoreProvider.getSongList().valueChanges();
   }
-
+  
+  goToDetailPage(song: Song): void {
+      this.navCtrl.push('DetailPage', { song: song });
+  }
 
 }
