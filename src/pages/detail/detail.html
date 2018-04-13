@@ -27,4 +27,7 @@
   <p>
     {{ song.songDescription }}
   </p>
+  <button ion-button block (click)="deleteSong(song.id, song.songName)">
+    DELETE SONG
+  </button>
 </ion-content>
