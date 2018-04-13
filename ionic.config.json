@@ -1,0 +1,8 @@
+{
+  "name": "firestore-example",
+  "app_id": "24567ae1",
+  "type": "ionic-angular",
+  "integrations": {
+    "cordova": {}
+  }
+}
