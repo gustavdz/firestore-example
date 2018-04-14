@@ -22,7 +22,7 @@ export class HomePage {
 
   logout(){
       this.authData.logoutUser();
-      this.navCtrl.setRoot(LoginPage);
+      this.navCtrl.setRoot('LoginPage');
   }
 
   ionViewDidLoad() {

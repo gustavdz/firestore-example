@@ -1,6 +1,5 @@
 import { Injectable } from '@angular/core';
 import { AngularFireAuth } from 'angularfire2/auth';
-import firebase from 'firebase/app';
 
 /*
   Generated class for the AuthProvider provider.
@@ -29,6 +28,10 @@ export class AuthProvider {
 
   signupUser(newEmail: string, newPassword: string): Promise<any> {
       return this.afAuth.auth.createUserWithEmailAndPassword(newEmail, newPassword);
+  }
+
+  myuser(){
+      return this.afAuth.auth.currentUser.uid;
   }
 
 }

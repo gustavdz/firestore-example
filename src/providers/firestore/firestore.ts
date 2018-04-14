@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import {AngularFirestore, AngularFirestoreCollection} from 'angularfire2/firestore';
 import { Song } from '../../models/song.interface';
+import {AuthProvider} from "../auth/auth";
 
 /*
   Generated class for the FirestoreProvider provider.
@@ -11,7 +12,7 @@ import { Song } from '../../models/song.interface';
 @Injectable()
 export class FirestoreProvider {
 
-  constructor(public firestore: AngularFirestore) {
+  constructor(public firestore: AngularFirestore, public authData: AuthProvider ) {
     console.log('Hello FirestoreProvider Provider');
   }
 
@@ -21,8 +22,9 @@ export class FirestoreProvider {
         songDescription: string,
         songName: string
     ): Promise<void> {
+        const uid = this.authData.myuser();
         const id = this.firestore.createId();
-        return this.firestore.doc(`songList/${id}`).set({
+        return this.firestore.doc(`/songList/users/${uid}/${id}`).set({
             id,
             albumName,
             artistName,
@@ -32,11 +34,13 @@ export class FirestoreProvider {
     }
 
     getSongList(): AngularFirestoreCollection<Song> {
-        return this.firestore.collection(`songList`);
+        const uid = this.authData.myuser();
+        return this.firestore.collection(`songList/users/${uid}`);
     }
 
     deleteSong(songId: string): Promise<void> {
-        return this.firestore.doc(`songList/${songId}`).delete();
+        const uid = this.authData.myuser();
+        return this.firestore.doc(`songList/users/${uid}/${songId}`).delete();
     }
 
 }
