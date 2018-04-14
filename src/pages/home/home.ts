@@ -3,6 +3,8 @@ import { NavController } from 'ionic-angular';
 import { Song } from '../../models/song.interface';
 import { FirestoreProvider } from '../../providers/firestore/firestore';
 import { Observable } from 'rxjs/Observable';
+import { AuthProvider } from '../../providers/auth/auth';
+import {LoginPage} from "../login/login";
 
 @Component({
   selector: 'page-home',
@@ -10,12 +12,17 @@ import { Observable } from 'rxjs/Observable';
 })
 export class HomePage {
     public songList: Observable<Song[]>;
-  constructor(public navCtrl: NavController, public firestoreProvider: FirestoreProvider) {
+  constructor(public navCtrl: NavController, public firestoreProvider: FirestoreProvider,public authData: AuthProvider) {
 
   }
 
   goToCreatePage(): void {
       this.navCtrl.push('CreatePage');
+  }
+
+  logout(){
+      this.authData.logoutUser();
+      this.navCtrl.setRoot(LoginPage);
   }
 
   ionViewDidLoad() {
